@@ -13,7 +13,7 @@ use strict;
 BEGIN {
     use Exporter ();
     use vars qw($VERSION @ISA @EXPORT @EXPORT_OK %EXPORT_TAGS $PortObj);
-    $VERSION     = '0.3';
+    $VERSION     = '0.4';
     @ISA         = qw(Exporter DynaLoader);
     @EXPORT      = qw();
     @EXPORT_OK   = qw();

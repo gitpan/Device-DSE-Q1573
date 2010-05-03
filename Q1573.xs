@@ -64,7 +64,7 @@ void terminal(char* device, SV* readbuf) {
 	buf[13] = 0;
 	
 	sv_setpvn(readbuf,buf,14);
-	return 0;
+	return;
 	
 	
 }
