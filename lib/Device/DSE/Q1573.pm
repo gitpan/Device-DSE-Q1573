@@ -13,7 +13,7 @@ use strict;
 BEGIN {
     use Exporter ();
     use vars qw($VERSION @ISA @EXPORT @EXPORT_OK %EXPORT_TAGS $PortObj);
-    $VERSION     = '0.5';
+    $VERSION     = '0.6';
     @ISA         = qw(Exporter DynaLoader);
     @EXPORT      = qw();
     @EXPORT_OK   = qw();
@@ -59,17 +59,7 @@ sub rawread {
 }
 
 
-sub read {
-	
-	my $self = shift;
-	my $raw = rawread();
-	my $read->{setting} = substr($raw,0,2);
-	my $read->{value} = substr($raw, 2,7);
-	my $read->{units} = substr($raw, 11,1);
-	
-	return $read; 
-	
-}
+
 
 #################### main pod documentation begin ###################
 
