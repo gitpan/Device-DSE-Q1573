@@ -13,7 +13,7 @@ use strict;
 BEGIN {
     use Exporter ();
     use vars qw($VERSION @ISA @EXPORT @EXPORT_OK %EXPORT_TAGS $PortObj);
-    $VERSION     = '0.4';
+    $VERSION     = '0.5';
     @ISA         = qw(Exporter DynaLoader);
     @EXPORT      = qw();
     @EXPORT_OK   = qw();
@@ -59,6 +59,18 @@ sub rawread {
 }
 
 
+sub read {
+	
+	my $self = shift;
+	my $raw = rawread();
+	my $read->{setting} = substr($raw,0,2);
+	my $read->{value} = substr($raw, 2,7);
+	my $read->{units} = substr($raw, 11,1);
+	
+	return $read; 
+	
+}
+
 #################### main pod documentation begin ###################
 
 
@@ -71,6 +83,7 @@ Device::DSE::Q1573 - Read data from DSE Q1573 Digital Multimeter
 
   use Device::DSE::Q1573;
   my $meter = Device::DSE::Q1573->new("/dev/ttyS0");
+  my $reading = $meter->read();
   my $reading = $meter->rawread();
 
 
@@ -81,10 +94,10 @@ Digital Multimeter, and allows you to read measurements
 from it. The data return is 14 bytes of the format:
 
 Type:Data:Units
-eg  reading when temperatur is selected on the meter
+eg  reading when temperature is selected on the meter
 will return 
 
-"TE  0019    C "    
+"TE  0019    C "   
 
 =head1 USAGE
 
@@ -99,6 +112,19 @@ will return
 
  Usage     : my $meter->rawread()
  Purpose   : Returns the 14 byte string from the meter.
+
+=head2 read();
+
+ Usage     : my $meter->read()
+ Purpose   : Returns a hash of values for the reading:
+ 
+ 				{ 
+ 					setting => setting eg TE for temperature
+ 					value => value read eg 14
+ 					units => units read eg C for celsius 
+ 					
+ 				}
+ 
  
 =head1 EXAMPLE
 
@@ -108,7 +134,7 @@ my $meter = Device::DSE::Q1573->new( "/dev/ttyS0" );
 
 while(1) {
 	my $data = $meter->read();
-	print $data . "\n";
+	print $data->{value} . "\n";
 	sleep(1);
 }
 
