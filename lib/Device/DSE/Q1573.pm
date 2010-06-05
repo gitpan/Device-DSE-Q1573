@@ -13,7 +13,7 @@ use strict;
 BEGIN {
     use Exporter ();
     use vars qw($VERSION @ISA @EXPORT @EXPORT_OK %EXPORT_TAGS $PortObj);
-    $VERSION     = '0.6';
+    $VERSION     = '0.61';
     @ISA         = qw(Exporter DynaLoader);
     @EXPORT      = qw();
     @EXPORT_OK   = qw();
@@ -55,7 +55,7 @@ sub rawread {
 		
 	my $readval;
 	terminal($self->{serialport}, $readval);
-	return "$readval";
+	return $readval;
 }
 
 
