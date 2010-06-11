@@ -10,5 +10,8 @@ WriteMakefile(
     ABSTRACT     => 'Read from DSE Q1573 / Metex Me-22 DMM',
     PREREQ_PM    => {
                      'Test::Simple' => 0.44,
+                     'Device::SerialPort' => 0.01,
+          			 'POSIX' => 0.01,
+          			 'Fcntl' => 0.01,
                     },
 );

@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               Device-DSE-Q1573
-version:            0.61
+version:            0.7
 abstract:           Read from DSE Q1573 / Metex Me-22 DMM
 author:
     - David Peters (davidp@electronf.com)
@@ -11,7 +11,10 @@ configure_requires:
 build_requires:
     ExtUtils::MakeMaker:  0
 requires:
-    Test::Simple:  0.44
+    Device::SerialPort:  0.01
+    Fcntl:               0.01
+    POSIX:               0.01
+    Test::Simple:        0.44
 no_index:
     directory:
         - t
